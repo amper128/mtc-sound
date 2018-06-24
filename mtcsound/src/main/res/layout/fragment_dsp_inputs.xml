@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/dsp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="@dimen/fragment_padding"
+            android:baselineAligned="false">
+
+            <!-- digital L band start -->
+            <LinearLayout android:orientation="vertical" android:layout_weight="1" android:layout_width="0px" android:layout_height="match_parent" android:gravity="center">
+                <TextView style="@style/large_label" android:text="@string/dsp_label_digital_l" />
+                <TextView style="@style/large_label" android:id="@+id/dsp_dig_l_v" android:text="@string/eq_label_zero" />
+                <FrameLayout android:layout_width="match_parent" android:layout_height="0px" android:layout_weight="1">
+                    <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="match_parent" android:gravity="center|end" android:layout_gravity="center"
+                        android:layout_marginEnd="@dimen/round_controls_fixed_size" android:paddingTop="@dimen/eq_gain_db_padding" android:paddingBottom="@dimen/eq_gain_db_padding">
+                        <TextView style="@style/medium_label" android:text="@string/dsp_label_plus_12db" />
+                        <Space android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="0px"/>
+                        <TextView style="@style/medium_label" android:text="@string/dsp_label_minus_72db" />
+                    </LinearLayout>
+                    <com.sevenfloor.mtcsound.ui.controls.VerticalSeekBar
+                        style="@style/seek_bar_v"
+                        android:id="@+id/seekBarDigL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:progress="72"
+                        android:max="84" />
+                </FrameLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                    <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <CheckBox
+                            style="@style/medium_label"
+                            android:id="@+id/dsp_dig_l_mute"
+                            android:layout_marginTop="@dimen/checkbox_top_margin"
+                            android:button="@null"
+                            android:drawableTop="@drawable/radiobutton"
+                            android:layout_width="match_parent"
+                            android:text="@string/eq_button_mute" />
+                    </FrameLayout>
+                    <TextView android:visibility="invisible" style="@style/small_label"/>
+                </LinearLayout>
+            </LinearLayout>
+            <!-- digital L band end -->
+            <!-- digital R band start -->
+            <LinearLayout android:orientation="vertical" android:layout_weight="1" android:layout_width="0px" android:layout_height="match_parent" android:gravity="center">
+                <TextView style="@style/large_label" android:text="@string/dsp_label_digital_l" />
+                <TextView style="@style/large_label" android:id="@+id/dsp_dig_r_v" android:text="@string/eq_label_zero" />
+                <FrameLayout android:layout_width="match_parent" android:layout_height="0px" android:layout_weight="1">
+                    <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="match_parent" android:gravity="center|end" android:layout_gravity="center"
+                        android:layout_marginEnd="@dimen/round_controls_fixed_size" android:paddingTop="@dimen/eq_gain_db_padding" android:paddingBottom="@dimen/eq_gain_db_padding">
+                        <TextView style="@style/medium_label" android:text="@string/dsp_label_plus_12db" />
+                        <Space android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="0px"/>
+                        <TextView style="@style/medium_label" android:text="@string/dsp_label_minus_72db" />
+                    </LinearLayout>
+                    <com.sevenfloor.mtcsound.ui.controls.VerticalSeekBar
+                        style="@style/seek_bar_v"
+                        android:id="@+id/seekBarDigR"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:progress="72"
+                        android:max="84" />
+                </FrameLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                    <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <CheckBox
+                            style="@style/medium_label"
+                            android:id="@+id/dsp_dig_r_mute"
+                            android:layout_marginTop="@dimen/checkbox_top_margin"
+                            android:button="@null"
+                            android:drawableTop="@drawable/radiobutton"
+                            android:layout_width="match_parent"
+                            android:text="@string/eq_button_mute" />
+                    </FrameLayout>
+                    <TextView android:visibility="invisible" style="@style/small_label"/>
+                </LinearLayout>
+            </LinearLayout>
+            <!-- digital R band end -->
+
+            <!-- FM L band start -->
+            <LinearLayout android:orientation="vertical" android:layout_weight="1" android:layout_width="0px" android:layout_height="match_parent" android:gravity="center">
+                <TextView style="@style/large_label" android:text="@string/dsp_label_fm_l" />
+                <TextView style="@style/large_label" android:id="@+id/dsp_fm_l_v" android:text="@string/eq_label_zero" />
+                <FrameLayout android:layout_width="match_parent" android:layout_height="0px" android:layout_weight="1">
+                    <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="match_parent" android:gravity="center|end" android:layout_gravity="center"
+                        android:layout_marginEnd="@dimen/round_controls_fixed_size" android:paddingTop="@dimen/eq_gain_db_padding" android:paddingBottom="@dimen/eq_gain_db_padding">
+                        <TextView style="@style/medium_label" android:text="@string/dsp_label_plus_12db" />
+                        <Space android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="0px"/>
+                        <TextView style="@style/medium_label" android:text="@string/dsp_label_minus_72db" />
+                    </LinearLayout>
+                    <com.sevenfloor.mtcsound.ui.controls.VerticalSeekBar
+                        style="@style/seek_bar_v"
+                        android:id="@+id/seekBarFmL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:progress="72"
+                        android:max="84" />
+                </FrameLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                    <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <CheckBox
+                            style="@style/medium_label"
+                            android:id="@+id/dsp_fm_l_mute"
+                            android:layout_marginTop="@dimen/checkbox_top_margin"
+                            android:button="@null"
+                            android:drawableTop="@drawable/radiobutton"
+                            android:layout_width="match_parent"
+                            android:text="@string/eq_button_mute" />
+                    </FrameLayout>
+                    <TextView android:visibility="invisible" style="@style/small_label"/>
+                </LinearLayout>
+            </LinearLayout>
+            <!-- FM L band end -->
+            <!-- FM R band start -->
+            <LinearLayout android:orientation="vertical" android:layout_weight="1" android:layout_width="0px" android:layout_height="match_parent" android:gravity="center">
+                <TextView style="@style/large_label" android:text="@string/dsp_label_fm_r" />
+                <TextView style="@style/large_label" android:id="@+id/dsp_fm_r_v" android:text="@string/eq_label_zero" />
+                <FrameLayout android:layout_width="match_parent" android:layout_height="0px" android:layout_weight="1">
+                    <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="match_parent" android:gravity="center|end" android:layout_gravity="center"
+                        android:layout_marginEnd="@dimen/round_controls_fixed_size" android:paddingTop="@dimen/eq_gain_db_padding" android:paddingBottom="@dimen/eq_gain_db_padding">
+                        <TextView style="@style/medium_label" android:text="@string/dsp_label_plus_12db" />
+                        <Space android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="0px"/>
+                        <TextView style="@style/medium_label" android:text="@string/dsp_label_minus_72db" />
+                    </LinearLayout>
+                    <com.sevenfloor.mtcsound.ui.controls.VerticalSeekBar
+                        style="@style/seek_bar_v"
+                        android:id="@+id/seekBarFmR"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:progress="72"
+                        android:max="84" />
+                </FrameLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                    <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <CheckBox
+                            style="@style/medium_label"
+                            android:id="@+id/dsp_fm_r_mute"
+                            android:layout_marginTop="@dimen/checkbox_top_margin"
+                            android:button="@null"
+                            android:drawableTop="@drawable/radiobutton"
+                            android:layout_width="match_parent"
+                            android:text="@string/eq_button_mute" />
+                    </FrameLayout>
+                    <TextView android:visibility="invisible" style="@style/small_label"/>
+                </LinearLayout>
+            </LinearLayout>
+            <!-- FM R band end -->
+
+            <!-- aux L band start -->
+            <LinearLayout android:orientation="vertical" android:layout_weight="1" android:layout_width="0px" android:layout_height="match_parent" android:gravity="center">
+                <TextView style="@style/large_label" android:text="@string/dsp_label_aux_l" />
+                <TextView style="@style/large_label" android:id="@+id/dsp_aux_l_v" android:text="@string/eq_label_zero" />
+                <FrameLayout android:layout_width="match_parent" android:layout_height="0px" android:layout_weight="1">
+                    <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="match_parent" android:gravity="center|end" android:layout_gravity="center"
+                        android:layout_marginEnd="@dimen/round_controls_fixed_size" android:paddingTop="@dimen/eq_gain_db_padding" android:paddingBottom="@dimen/eq_gain_db_padding">
+                        <TextView style="@style/medium_label" android:text="@string/dsp_label_plus_12db" />
+                        <Space android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="0px"/>
+                        <TextView style="@style/medium_label" android:text="@string/dsp_label_minus_72db" />
+                    </LinearLayout>
+                    <com.sevenfloor.mtcsound.ui.controls.VerticalSeekBar
+                        style="@style/seek_bar_v"
+                        android:id="@+id/seekBarAuxL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:progress="72"
+                        android:max="84" />
+                </FrameLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                    <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <CheckBox
+                            style="@style/medium_label"
+                            android:id="@+id/dsp_aux_l_mute"
+                            android:layout_marginTop="@dimen/checkbox_top_margin"
+                            android:button="@null"
+                            android:drawableTop="@drawable/radiobutton"
+                            android:layout_width="match_parent"
+                            android:text="@string/eq_button_mute" />
+                    </FrameLayout>
+                    <TextView android:visibility="invisible" style="@style/small_label"/>
+                </LinearLayout>
+            </LinearLayout>
+            <!-- aux L band end -->
+            <!-- aux R band start -->
+            <LinearLayout android:orientation="vertical" android:layout_weight="1" android:layout_width="0px" android:layout_height="match_parent" android:gravity="center">
+                <TextView style="@style/large_label" android:text="@string/dsp_label_aux_r" />
+                <TextView style="@style/large_label" android:id="@+id/dsp_aux_r_v" android:text="@string/eq_label_zero" />
+                <FrameLayout android:layout_width="match_parent" android:layout_height="0px" android:layout_weight="1">
+                    <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="match_parent" android:gravity="center|end" android:layout_gravity="center"
+                        android:layout_marginEnd="@dimen/round_controls_fixed_size" android:paddingTop="@dimen/eq_gain_db_padding" android:paddingBottom="@dimen/eq_gain_db_padding">
+                        <TextView style="@style/medium_label" android:text="@string/dsp_label_plus_12db" />
+                        <Space android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="0px"/>
+                        <TextView style="@style/medium_label" android:text="@string/dsp_label_minus_72db" />
+                    </LinearLayout>
+                    <com.sevenfloor.mtcsound.ui.controls.VerticalSeekBar
+                        style="@style/seek_bar_v"
+                        android:id="@+id/seekBarAuxR"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:progress="72"
+                        android:max="84" />
+                </FrameLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                    <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <CheckBox
+                            style="@style/medium_label"
+                            android:id="@+id/dsp_aux_r_mute"
+                            android:layout_marginTop="@dimen/checkbox_top_margin"
+                            android:button="@null"
+                            android:drawableTop="@drawable/radiobutton"
+                            android:layout_width="match_parent"
+                            android:text="@string/eq_button_mute" />
+                    </FrameLayout>
+                    <TextView android:visibility="invisible" style="@style/small_label"/>
+                </LinearLayout>
+            </LinearLayout>
+            <!-- aux R band end -->
+        </LinearLayout>
+</FrameLayout>
