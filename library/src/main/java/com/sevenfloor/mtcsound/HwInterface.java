@@ -32,6 +32,10 @@ public class HwInterface {
     private final Register R57 = new Register(0x57, 0b10000000);
     private final Register R75 = new Register(0x75, 0b00000000);
 
+    private final Register DSP_01 = new Register(0x01, 0b00000000);
+    private final Register DSP_02 = new Register(0x02, 0b00000000);
+    private final Register DSP_03 = new Register(0x03, 0b00000000);
+
     private final Register AdvancedSwitch = R01;
     private final Register SubwooferSetup = R02;
     private final Register LoudnessFrequency = R03;
@@ -52,7 +56,13 @@ public class HwInterface {
     private final Register EqTrebleGain = R57;
     private final Register LoudnessGainHiCut = R75;
 
+    private final Register DSP_Volume = DSP_01;
+    private final Register DSP_Input = DSP_02;
+    private final Register DSP_Mute = DSP_03;
+
     private final Register[] AllRegisters = new Register[] { R01, R02, R03, R05, R06, R20, R28, R29, R2A, R2B, R2C, R30, R41, R44, R47, R51, R54, R57, R75 };
+
+    private final Register[] AllRegistersDSP = new Register[] { DSP_01, DSP_02, DSP_03 };
 
     private List<String> fileNames;
     private String fileName = null;
@@ -79,7 +89,8 @@ public class HwInterface {
         stateMessage = "No accessible device files";
         fileName = null;
         for (String fn: fileNames) {
-            stateMessage = I2cBus.write(fn, 0x40,new byte[][]{{0x01}});
+            //stateMessage = I2cBus.write(fn, 0x40,new byte[][]{{0x01}});
+            stateMessage = I2cBus.write(fn, 0x08,new byte[][]{{0x00}});
             if (stateMessage == null) {
                 Log.i(Utils.logTag, String.format("Checking %s - Success", fn));
                 fileName = fn;
@@ -176,20 +187,25 @@ public class HwInterface {
             case sys:
             case gsm_bt:
                 InputSelector.value = 0x81;
+                DSP_Input.value = 0x00;
                 break;
             case dtv:
             case dvd:
                 InputSelector.value = 0x82;
+                DSP_Input.value = 0x02;
                 break;
             case dvr: // ? need to check with the logic analyzer
             case line:
                 InputSelector.value = 0x83;
+                DSP_Input.value = 0x01;
                 break;
             case fm:
                 InputSelector.value = 0x8A;
+                DSP_Input.value = 0x02;
                 break;
             case ipod:
                 InputSelector.value = 0x8B;
+                DSP_Input.value = 0x02;
                 break;
         }
     }
@@ -212,6 +228,9 @@ public class HwInterface {
         }
 
         int result = db - cut;
+        DSP_Volume.value = result;
+        DSP_Mute.value = 0;
+
         if (result > 15) result = 15;
         VolumeGain.value = result < -79 ? 0xFF : 128 - result;
     }
@@ -285,6 +304,10 @@ public class HwInterface {
             FaderRearLeft.value = 0xFF;
             FaderSubwoofer.value = 0xFF;
             MixingGain.value = 0xFF;
+
+            DSP_Mute.value = 1;
+        } else {
+            DSP_Mute.value = 0;
         }
     }
 
@@ -298,7 +321,16 @@ public class HwInterface {
                 r.flush();
             }
         }
-        I2cBus.write(fileName, 0x40, buffer.toArray(new byte[][]{}));
+        //I2cBus.write(fileName, 0x40, buffer.toArray(new byte[][]{}));
+
+        ArrayList<byte[]> buffer2 = new ArrayList<>(AllRegistersDSP.length);
+        for (Register r: AllRegistersDSP) {
+            if (forced || r.isChanged()) {
+                buffer2.add(new byte[]{(byte) r.index, (byte) r.value});
+                r.flush();
+            }
+        }
+        I2cBus.write(fileName, 0x08, buffer2.toArray(new byte[][]{}));
     }
 
     private void writeAllRegistersToI2C() {
@@ -311,7 +343,16 @@ public class HwInterface {
             buffer[i + 1] = (byte) r.value;
             r.flush();
         }
-        I2cBus.write(fileName, 0x40, new byte[][]{buffer});
+        //I2cBus.write(fileName, 0x40, new byte[][]{buffer});
+
+        byte[] buffer2 = new byte[AllRegistersDSP.length + 1];
+        buffer2[0] = (byte) AllRegistersDSP[0].index;
+        for (int i = 0; i < AllRegistersDSP.length; i++) {
+            Register r = AllRegistersDSP[i];
+            buffer2[i + 1] = (byte) r.value;
+            r.flush();
+        }
+        I2cBus.write(fileName, 0x08, new byte[][]{buffer2});
     }
 
     private class Register {
